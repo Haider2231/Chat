@@ -62,9 +62,14 @@ public class PanelMsg extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Enviar")) {
             String message = getMessage();
-            pnlChat.addMessage("Me: " + message);
+            if (message.equals("")) {
+                
+            }else{
+                pnlChat.addMessage("Me: " + message);
             ctrl.socket(message);
             clearMessage();
+            }
+            
         }
     }
 
@@ -79,7 +84,7 @@ public class PanelMsg extends JPanel implements ActionListener {
         }
 
         protected void paintComponent(Graphics g) {
-            g.setColor(new Color(238, 237, 239));
+            g.setColor(new Color(239, 239, 239));
             g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 35, 35);
             super.paintComponent(g);
         }

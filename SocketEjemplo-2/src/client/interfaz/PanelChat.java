@@ -30,6 +30,6 @@ public class PanelChat extends JPanel {
 
     public void addMessage(String message) {
         txtArena.append(message + "\n");
-        txtArena.setCaretPosition(txtArena.getDocument().getLength());
+        txtArena.setCaretPosition(txtArena.getDocument().getLength()); 
     }
 }
