@@ -21,8 +21,8 @@ public class PanelTop extends JPanel {
         Image avatarImage = avatarIcon.getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH); // Redimensionar imagen
         lblAvatar = new JLabel(new ImageIcon(avatarImage));
         lblAvatar.setPreferredSize(new Dimension(45, 45)); // Tamaño del avatar
-        lblAvatar.setBackground(new Color(207, 216, 223)); // Color #cfd8df
-        lblAvatar.setOpaque(true); // Permitir que el fondo sea visible
+        lblAvatar.setBackground(new Color(207, 216, 223));
+        lblAvatar.setOpaque(true);
         
 //        ImageIcon avatarIcon = new ImageIcon(getClass().getResource("/resources/icon5.png"));
 //        lblAvatar = new JLabel(avatarIcon);

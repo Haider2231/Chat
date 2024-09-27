@@ -1,7 +1,5 @@
-
 package client.interfaz;
 
-import client.controlador.Controlador;
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,7 +9,8 @@ public class PanelChat extends JPanel {
 
     public PanelChat() {
         setLayout(new BorderLayout());
-        setBackground(new Color(255, 255, 255, 240)); // Fondo neumórfico
+        setBackground(new Color(255, 255, 255, 240));
+        setBorder(null);
 
         txtArena = new JTextArea();
         txtArena.setEditable(false);
@@ -22,14 +21,15 @@ public class PanelChat extends JPanel {
         txtArena.setMargin(new Insets(10, 10, 10, 10));
 
         JScrollPane scrlChat = new JScrollPane(txtArena);
-        scrlChat.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(0, 0, 0, 50), 1),
-                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        scrlChat.setBorder(null);
+        scrlChat.setOpaque(false);
+        scrlChat.getViewport().setOpaque(false);
         
         add(scrlChat, BorderLayout.CENTER);
     }
 
     public void addMessage(String message) {
         txtArena.append(message + "\n");
+        txtArena.setCaretPosition(txtArena.getDocument().getLength());
     }
 }

@@ -10,7 +10,7 @@ public class PanelNick extends JPanel {
 
     public PanelNick() {
         setLayout(new FlowLayout(FlowLayout.LEFT));
-        setBackground(new Color(255, 255, 255, 240)); // Fondo neumórfico
+        setBackground(new Color(255, 255, 255, 240));
 
         lblNick = new JLabel("Nick:");
         txtFieldNick = new JTextField(15);
