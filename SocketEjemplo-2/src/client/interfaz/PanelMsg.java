@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 
 public class PanelMsg extends JPanel implements ActionListener {
 
@@ -16,14 +18,25 @@ public class PanelMsg extends JPanel implements ActionListener {
     public PanelMsg(PanelChat panelChat, Controlador ctrl) {
         this.ctrl = ctrl;
         this.pnlChat = panelChat;
+        
         setLayout(new BorderLayout());
-        setBackground(new Color(255, 255, 255, 240)); // Fondo neumórfico
+        setBackground(new Color(255, 255, 255, 240)); 
 
         txtFieldEnviar = new JTextField();
         txtFieldEnviar.setFont(new Font("Arial", Font.PLAIN, 14));
         txtFieldEnviar.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(0, 0, 0, 50), 1),
                 BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+
+        
+        txtFieldEnviar.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    sendMessage();
+                }
+            }
+        });
 
         bttnEnviar = new JButton("Enviar");
         bttnEnviar.setBackground(new Color(0, 123, 255));
@@ -43,14 +56,20 @@ public class PanelMsg extends JPanel implements ActionListener {
         txtFieldEnviar.setText("");
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Enviar")) {
-            String message = getMessage();
+    private void sendMessage() {
+        String message = getMessage();
+        if (!message.trim().isEmpty()) {
             pnlChat.addMessage("Me: " + message);
             ctrl.socket(message);
             clearMessage();
         }
     }
-}
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Enviar")) {
+            sendMessage();
+        }
+    }
+}
+ 
